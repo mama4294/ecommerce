@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import {
   getAuth,
+  createUserWithEmailAndPassword,
   signInWithRedirect,
   signInWithPopup,
   GoogleAuthProvider,
@@ -50,6 +51,7 @@ export const createUserDocumentFromAuth = async (userAuth, additionalData) => {
         email,
         createdAt,
         photoURL,
+        ...additionalData,
       });
     } catch (error) {
       console.log("Error creating user", error.message);
@@ -57,4 +59,9 @@ export const createUserDocumentFromAuth = async (userAuth, additionalData) => {
   }
 
   return userDocRef;
+};
+
+export const createAuthUserWithEmailAndPassword = async (email, password) => {
+  if (!email || !password) return;
+  return await createUserWithEmailAndPassword(auth, email, password);
 };
