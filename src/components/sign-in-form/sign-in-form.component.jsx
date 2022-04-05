@@ -1,9 +1,12 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
+
 import {signUserInWithEmailAndPassword} from '../../utils/firebase/firebase.utils'
-import FormInput from '../form-input/form-input.component'
 import {Button} from "../button/button.component"
 import {getRedirectResult} from 'firebase/auth'
 import {auth, signInWithGooglePopup, createUserDocumentFromAuth,signInWithGoogleRedirect} from "../../utils/firebase/firebase.utils"
+import FormInput from '../form-input/form-input.component'
+import {UserContext} from "../../contexts/user.context"
+
 import './sign-in-form.styles.scss'
 
 const defaultFormFields = {
@@ -14,21 +17,21 @@ const defaultFormFields = {
 
 
 const logGoogleUser = async () =>{
-    const {user} = await signInWithGooglePopup();
-    const userDocRef = await createUserDocumentFromAuth(user);
-    // console.log(userDocRef)
+    await signInWithGooglePopup();
 }
 
-const logGoogleRedirectUser = async () =>{
-    const {user} = await signInWithGoogleRedirect();
-    const userDocRef = await createUserDocumentFromAuth(user);
-    // console.log(userDocRef)
-}
+// const logGoogleRedirectUser = async () =>{
+//     const {user} = await signInWithGoogleRedirect();
+//     const userDocRef = await createUserDocumentFromAuth(user);
+//     // console.log(userDocRef)
+// }
 
 
 const SignUpForm = ()=>{
     const [formFields, setFormFields] = useState(defaultFormFields)
     const {email, password} = formFields;
+
+    const {setCurrentUser} = useContext(UserContext);
 
     const resetFormFields = ()=>{
         setFormFields(defaultFormFields)
@@ -41,7 +44,7 @@ const SignUpForm = ()=>{
           const response = await getRedirectResult(auth);
           if(response){
             const userDocRef = await createUserDocumentFromAuth(response.user);
-            console.log(userDocRef);
+            // console.log(userDocRef);
         }
         }
         fetchData();
@@ -51,15 +54,14 @@ const SignUpForm = ()=>{
     const handleChange = (e)=>{
         const {name, value} = e.target;
         setFormFields({...formFields, [name]: value})
-        console.log(formFields)
+        // console.log(formFields)
     }
 
     const handleSubmit = async(e)=>{
         e.preventDefault();
         try{
-            const response = await signUserInWithEmailAndPassword(email, password)
-            console.log(response)
-            if(response.user){
+            const {user} = await signUserInWithEmailAndPassword(email, password)
+            if(user){
                 resetFormFields();
             }
         }catch(error){

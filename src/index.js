@@ -1,9 +1,12 @@
 import React from "react";
-import "./index.scss";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
 import * as ReactDOMClient from "react-dom/client";
+import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
+
+import App from "./App";
+import { UserProvider } from "./contexts/user.context";
+
+import "./index.scss";
 
 const container = document.getElementById("root");
 // Create a root.
@@ -12,7 +15,9 @@ const root = ReactDOMClient.createRoot(container);
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <UserProvider>
+        <App />
+      </UserProvider>
     </BrowserRouter>
   </React.StrictMode>
 );
