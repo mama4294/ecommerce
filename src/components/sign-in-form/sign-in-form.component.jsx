@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useContext} from 'react'
 
 import {signUserInWithEmailAndPassword} from '../../utils/firebase/firebase.utils'
-import {Button} from "../button/button.component"
+import {Button, BUTTON_TYPE_CLASS} from "../button/button.component"
 import {getRedirectResult} from 'firebase/auth'
 import {auth, signInWithGooglePopup, createUserDocumentFromAuth,signInWithGoogleRedirect} from "../../utils/firebase/firebase.utils"
 import FormInput from '../form-input/form-input.component'
@@ -83,7 +83,7 @@ const SignUpForm = ()=>{
             <FormInput required label="Password" type="password" name="password" onChange={handleChange} value={password}/>
             <div className='buttons-container'>
             <Button type="submit">Sign In</Button>
-            <Button type="button" buttonType="google" onClick={logGoogleUser}>Google Sign In</Button>
+            <Button type="button" buttonType={BUTTON_TYPE_CLASS.google} onClick={logGoogleUser}>Google Sign In</Button>
             </div>
         </form>
 
