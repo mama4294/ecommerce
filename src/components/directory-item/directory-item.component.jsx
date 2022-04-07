@@ -2,10 +2,10 @@ import {DirectoryItemContainer, BackgroundImageContainer, DirectoryBodyContainer
 import { useNavigate } from 'react-router-dom';
 
 const DirectoryItem = ({category}) =>{
-    const {imageUrl, title} = category;
+    const {imageUrl, title, route} = category;
     const navigate = useNavigate();
     const navigateToCategory = () => {
-      navigate('/shop/' + title);
+      navigate(route);
   }
 
     return(
