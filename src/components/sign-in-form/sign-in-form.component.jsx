@@ -5,7 +5,6 @@ import {Button, BUTTON_TYPE_CLASS} from "../button/button.component"
 import {getRedirectResult} from 'firebase/auth'
 import {auth, signInWithGooglePopup, createUserDocumentFromAuth,signInWithGoogleRedirect} from "../../utils/firebase/firebase.utils"
 import FormInput from '../form-input/form-input.component'
-import {UserContext} from "../../contexts/user.context"
 
 import './sign-in-form.styles.scss'
 
@@ -30,8 +29,6 @@ const logGoogleUser = async () =>{
 const SignUpForm = ()=>{
     const [formFields, setFormFields] = useState(defaultFormFields)
     const {email, password} = formFields;
-
-    const {setCurrentUser} = useContext(UserContext);
 
     const resetFormFields = ()=>{
         setFormFields(defaultFormFields)
