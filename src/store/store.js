@@ -17,7 +17,7 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const middleWares = [
   process.env.NODE_ENV === "development" && loggerMiddleware,
-].filter(Boolean); // remove falsy values
+].filter(Boolean); // hide logger if in production
 
 const composedEnhancers = compose(applyMiddleware(...middleWares));
 
