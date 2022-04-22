@@ -6,14 +6,14 @@ import CategoriesPreview from '../categories-preview/categories-preview.componen
 import Category from '../category/category.component'
 
 import { getCategoriesAndDocuments } from '../../utils/firebase/firebase.utils'
-import { fetchCategoriesAsync } from '../../store/categories/category.action'
+import { fetchCategoriesStart } from '../../store/categories/category.action'
 import './shop.styles.scss'
 
  const Shop = () => {
   const dispatch = useDispatch()
   
   useEffect(() => {
-    dispatch(fetchCategoriesAsync())
+    dispatch(fetchCategoriesStart())
   }, []);
 
   return (
