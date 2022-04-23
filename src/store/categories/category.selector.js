@@ -1,16 +1,14 @@
 import { createSelector } from "reselect";
-import { categoriesReducer } from "./category.reducer";
 
-const selectCategoryReducer = (state) => state.category;
+const selectCategoryReducer = (state) => state.categories;
 
-//Memoized selector
-export const selectcategories = createSelector(
+export const selectCategories = createSelector(
   [selectCategoryReducer],
   (categoriesSlice) => categoriesSlice.categories
 );
 
 export const selectCategoriesMap = createSelector(
-  [selectcategories],
+  [selectCategories],
   (categories) =>
     categories.reduce((acc, category) => {
       const { title, items } = category;

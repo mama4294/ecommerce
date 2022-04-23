@@ -24,3 +24,4 @@ export const Button = ({children, buttonType, ...otherProps}) => {
     </ButtonComponent>
   )
 }
+
