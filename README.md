@@ -1,7 +1,7 @@
 # Matt-In-the-Hat E-Commerce Site
 An E-commerce website for a clothing store
 
-![Picture](https://github.com/mama4294/ecommerce/src/assets/e-commerce-main.png
+![Picture](https://github.com/mama4294/portfolio/blob/27c52435eb95283f660c587d2dcca7eb6a5a716b/public/e-commerce-main.png)
 
 ## Description
 
